@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>Trello API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
+</head>
+<body>
+    <!-- Code goes here... -->
+    <div class="ui top fixed menu">
+      <div class="item">
+        Trello Creds
+      </div>
+    </div>
+
+    <div style="padding: 60px;">
+    </div>
+    <div class="ui two column centered grid">
+      <div class="column">
+
+        <h3>Important Links</h3>
+        <ul>
+            <li><a href="https://trello.com/app-key">API KEY</a></li>
+            <li><a href="https://developers.trello.com/advanced-reference">API Ref</a></li>
+            <li><a href="https://developers.trello.com/sandbox">Sandbox</a></li>
+        </ul>
+        <h3>Trello API Key</h3>
+        <div class="ui fluid icon input">
+            <input type="text" placeholder="Trello API Key" class="js-save-input" data-id="key">
+        </div>  
+        <h3>Trello API Token</h3>
+        <div class="ui fluid icon input">
+            <input type="text" placeholder="Trello API Token" class="js-save-input" data-id="token">
+        </div>  
+        <h3>Trello API Board Id</h3>
+        <div class="ui fluid icon input">
+            <input type="text" placeholder="Trello Board Id" class="js-save-input" data-id="boardId">
+        </div>  
+      </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
+    <script>
+        (function() {
+            const $inputs = $('.js-save-input');
+            Array.from($inputs).forEach((curr, idx) => {
+                const $el = $(curr);
+                const item = localStorage.getItem($el.attr('data-id'));
+
+                if (item) {
+                    $el.val(item);
+                }
+            });
+
+            $('.js-save-input').on('change blur keydown', (e) => {
+                const $el = $(e.target);
+
+                if ($el.attr('data-id')) {
+                    localStorage.setItem($el.attr('data-id'), $el.val());
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
